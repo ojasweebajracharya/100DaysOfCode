@@ -4,20 +4,44 @@ Google Kickstart Round A 2020
 N = numStacks
 K = platesInStack
 P = neededPlates
+
+Note to self:
+- Fix neededPlates and inc. into function
+
 '''
 import numpy as np
 
-def maxSumBeauty(platesBeauty):
+def maxSumBeauty(index, platesBeauty, plateCounter):
     organiseArr = []
-    for i in range(numStacks):
-        sortedArr = sorted(platesBeauty[i])
-        highestNum = sortedArr[platesInStack - 1]
-        # sumOfi = sum(platesBeauty[i[:platesBeauty[i].index(highestNum)]])
-        platesBeautyArr = np.array(platesBeauty)
-        sumOfi = platesBeautyArr[:,platesBeautyArr[i].index(highestNum)]
+    sortedArr = sorted(platesBeauty[i])
+    highestNum = sortedArr[platesInStack - 1]
+    currentRow = platesBeauty[index]
+    print(f"currentRow {currentRow}")
+    idxHighest = currentRow.index(highestNum)
+    print(f"idxHighest {idxHighest}")
+    sumToHighest = sum(currentRow[0:idxHighest + 1])
 
-        print(f"sumOfi: {sumOfi}")
-        organiseArr.append([platesBeauty[i].index(highestNum), highestNum, sumOfi, i])
+    print(f"sumOfi: {sumToHighest}")
+    organiseArr.append([idxHighest, highestNum, sumToHighest, index])
+    print(f"organiseArr {organiseArr}")
+
+
+    # for i in range(numStacks):
+    #     sortedArr = sorted(platesBeauty[i])
+    #     highestNum = sortedArr[platesInStack - 1]
+    #     platesBeautyArr = np.array(platesBeauty)
+    #     # print(f"platesBeautyArr {platesBeautyArr}")
+    #     # print(f"platesBeauty {platesBeauty}")
+    #     currentRow = platesBeauty[i]
+    #     print(f"currentRow {currentRow}")
+    #     idxHighest = currentRow.index(highestNum)
+    #     print(f"idxHighest {idxHighest}")
+    #     sumToHighest = sum(currentRow[0:idxHighest + 1])
+    #     # sumToHighest = currentRow[0:idxHighest].sum()
+    #
+    #     print(f"sumOfi: {sumToHighest}")
+    #     organiseArr.append([idxHighest, highestNum, sumToHighest, i])
+    #     print(f"organiseArr {organiseArr}")
 
     return organiseArr
     # format returned : {idx of highest num}, highestnum, {sumbeforeit}, idxInOriginal]
@@ -37,22 +61,21 @@ for i in range(testCases):
     for j in range(numStacks):
         platesBeauty.append(list(map(int, input().split())))
 
-    currentMatrix = maxSumBeauty(platesBeauty)
-
-    current2D = np.array(currentMatrix) # Gets rid of the commas, can use with numpy now
-    print(f"currentMatrix: {currentMatrix}")
-
-    # Sorts in order of highest sum value:
-    sortedMat = current2D[current2D[::-1,2].argsort()]
-    print(f"sortedMat: {sortedMat}")
-
     k = 0
+    index = 0
+    plateCounter = neededPlates
     while found != neededPlates and k <= numStacks:
-        print(sortedMat[k][2])
+        currentMatrix = maxSumBeauty(index, platesBeauty, plateCounter)
+
+        current2D = np.array(currentMatrix)  # Gets rid of the commas, can use with numpy now
+        sortedMat = current2D[current2D[::-1, 2].argsort()]
+
+        print(f"SortedMat[k][2] {sortedMat[k][2]}")
         # total += sortedMat[k][2]
         #
         # found += sortedMat[k][0] + 1
         k += 1
+        plateCounter -= currentMatrix[i[0]] + 1
 
 
     # while current[0] != neededPlates:
