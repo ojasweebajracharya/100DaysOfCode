@@ -6,85 +6,74 @@ K = platesInStack
 P = neededPlates
 
 Note to self:
-- Fix neededPlates and inc. into function
+Test 1 Works !!!! Yaaayy
+For test two, need to enumerate to get indexes and values and use a dict to retain last index.
+Last repeated high number index is then stored.
+
+(and this: )
+To simplify:
+max() exists -_-
 
 '''
 import numpy as np
 
-def maxSumBeauty(index, platesBeauty, plateCounter):
+def rowChecker(currentRow, platesNeeded, isLast):
     organiseArr = []
-    sortedArr = sorted(platesBeauty[i])
-    highestNum = sortedArr[platesInStack - 1]
-    currentRow = platesBeauty[index]
-    print(f"currentRow {currentRow}")
+    # Checks if theres more plates than needed in the row
+    if platesNeeded < len(currentRow):
+        currentRow = currentRow[:platesNeeded]
+
+    sortedArr = sorted(currentRow)
+
+    if isLast:
+        # Just add all left over
+        highestNum = currentRow[len(currentRow) - 1]
+
+    elif sortedArr[]
+
+    else:
+        # Sorts array
+
+        # Highest number is the last index
+        highestNum = sortedArr[len(currentRow) - 1]
+
+    # Finds the highest index and sum to it in the original row
     idxHighest = currentRow.index(highestNum)
-    print(f"idxHighest {idxHighest}")
     sumToHighest = sum(currentRow[0:idxHighest + 1])
 
-    print(f"sumOfi: {sumToHighest}")
-    organiseArr.append([idxHighest, highestNum, sumToHighest, index])
-    print(f"organiseArr {organiseArr}")
-
-
-    # for i in range(numStacks):
-    #     sortedArr = sorted(platesBeauty[i])
-    #     highestNum = sortedArr[platesInStack - 1]
-    #     platesBeautyArr = np.array(platesBeauty)
-    #     # print(f"platesBeautyArr {platesBeautyArr}")
-    #     # print(f"platesBeauty {platesBeauty}")
-    #     currentRow = platesBeauty[i]
-    #     print(f"currentRow {currentRow}")
-    #     idxHighest = currentRow.index(highestNum)
-    #     print(f"idxHighest {idxHighest}")
-    #     sumToHighest = sum(currentRow[0:idxHighest + 1])
-    #     # sumToHighest = currentRow[0:idxHighest].sum()
-    #
-    #     print(f"sumOfi: {sumToHighest}")
-    #     organiseArr.append([idxHighest, highestNum, sumToHighest, i])
-    #     print(f"organiseArr {organiseArr}")
+    organiseArr.append(idxHighest)
+    organiseArr.append(highestNum)
+    organiseArr.append(sumToHighest)
 
     return organiseArr
-    # format returned : {idx of highest num}, highestnum, {sumbeforeit}, idxInOriginal]
-
 
 
 # Main starts here:
-    #return [found,sumsofar]
 testCases = int(input())
 
 for i in range(testCases):
     total  = 0
-    found = 0
 
     platesBeauty = []
     numStacks, platesInStack, neededPlates = list(map(int, input().split(" ")))
     for j in range(numStacks):
         platesBeauty.append(list(map(int, input().split())))
 
-    k = 0
-    index = 0
-    plateCounter = neededPlates
-    while found != neededPlates and k <= numStacks:
-        currentMatrix = maxSumBeauty(index, platesBeauty, plateCounter)
+    numPlates = neededPlates
+    isLast = False
+    for k in range(len(platesBeauty)):
+        if k == (numStacks - 1):
+            isLast = True
 
-        current2D = np.array(currentMatrix)  # Gets rid of the commas, can use with numpy now
-        sortedMat = current2D[current2D[::-1, 2].argsort()]
+        checkedRow = rowChecker(platesBeauty[k], numPlates, isLast)
 
-        print(f"SortedMat[k][2] {sortedMat[k][2]}")
-        # total += sortedMat[k][2]
-        #
-        # found += sortedMat[k][0] + 1
-        k += 1
-        plateCounter -= currentMatrix[i[0]] + 1
+        numPlates -= checkedRow[0] + 1
+        total += checkedRow[2]
+        if numPlates == 0:
+            break
 
 
-    # while current[0] != neededPlates:
-    #     new = maxSumBeauty(platesBeauty)
-    #     current[0] += new[0]
-
-
-
-    # print("Case #{}: {}".format(i, maxSumBeauty(platesBeauty)))
+    print("Case #{}: {}".format(i, total))
 
 
 
