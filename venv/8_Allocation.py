@@ -1,5 +1,5 @@
 '''
-KickStart 2020 Round A Question
+KickStart 2020 Round A Question Q1
 '''
 
 # cases = int(input())

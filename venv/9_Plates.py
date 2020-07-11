@@ -1,5 +1,5 @@
 '''
-Google Kickstart Round A 2020
+Google Kickstart Round A 2020 Q2
 
 N = numStacks
 K = platesInStack

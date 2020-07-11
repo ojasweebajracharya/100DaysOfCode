@@ -1,3 +1,7 @@
+'''
+HackerRank: Easy
+'''
+
 def birthdayCakeCandles(ar):
     sortArr = sorted(ar, reverse = True)
     dictArr = dict()

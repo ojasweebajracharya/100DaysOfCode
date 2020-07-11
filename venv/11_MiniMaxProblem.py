@@ -1,5 +1,5 @@
 '''
-HackerRank Question
+HackerRank Question: Easy
 '''
 def miniMaxSum(arr):
     minSum = 0

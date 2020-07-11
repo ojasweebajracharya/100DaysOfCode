@@ -1,5 +1,5 @@
 '''
-HackerRank Question
+HackerRank Question: Easy
 '''
 
 n = int(input())
