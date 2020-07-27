@@ -1,4 +1,1 @@
-I will be solving one coding problem everyday for 100 days.
-The problems come from the websites: HackerRank, LeetCode and Google's previous KickStart Questions
-
-(Note: I've started uploading to git from day 7, I will try to continue to 107)
+This is a repo of programming challenges I've completed from websites such as HackerRank, Leetccode and Google's Kickstart to improve my coding skills.
